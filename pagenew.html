@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manjusha K – Portfolio & Diary</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--gold:#d8b878;--moon:#bcd0ff;--text:#ece9e2;--muted:#9a9aa8;--glass:rgba(8,10,28,.62)}
+html,body{background:#000;color:var(--text);font-family:'Jost',sans-serif;font-weight:300}
+h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif;font-weight:500}
+.page{display:none;min-height:100vh}.page.active{display:block}
+
+/* ---------- Landing ---------- */
+#landing{position:relative;background:radial-gradient(ellipse at 20% 10%,#14141f 0,#000 60%);overflow:hidden}
+#landing::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,#fff8 50%,transparent),radial-gradient(1px 1px at 70% 20%,#fff6 50%,transparent),radial-gradient(1px 1px at 85% 70%,#fff5 50%,transparent),radial-gradient(1px 1px at 40% 80%,#fff5 50%,transparent),radial-gradient(1px 1px at 10% 65%,#fff4 50%,transparent);}
+.topbar{position:relative;z-index:2;padding:1.4rem 0}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.04em}
+.btn-gold{border:1px solid var(--gold);color:var(--gold);background:transparent;border-radius:0;padding:.45rem 1.4rem}
+.btn-gold:hover,.btn-gold:focus{background:var(--gold);color:#000}
+.btn-solid{background:var(--gold);color:#000;border-radius:0;border:0;padding:.6rem 1.8rem;font-weight:500}
+.btn-solid:hover{background:#fff;color:#000}
+.hero{position:relative;z-index:1;min-height:78vh;display:flex;align-items:center}
+.hero h1{font-size:clamp(3.2rem,9vw,7.5rem);line-height:.95;letter-spacing:-.01em}
+.hero p{max-width:34rem;color:var(--muted);font-size:1.15rem;margin-top:1.5rem}
+.moon-orb{position:absolute;right:-8vw;top:12vh;width:min(46vw,520px);aspect-ratio:1;border-radius:50%;background:url(images/moon.webp) 8% 18%/420% no-repeat;opacity:.9;box-shadow:0 0 90px 10px #5d7bd855}
+
+/* ---------- Login ---------- */
+#login{background:linear-gradient(#000a,#000d),url(images/moon.webp) center/cover;display:none;align-items:center;justify-content:center}
+#login.active{display:flex}
+.login-box{width:min(420px,92vw);background:var(--glass);border:1px solid #ffffff22;padding:2.2rem;backdrop-filter:blur(8px)}
+.form-control{background:#0006;border:1px solid #ffffff33;color:#fff;border-radius:0}
+.form-control:focus{background:#000a;color:#fff;border-color:var(--gold);box-shadow:none}
+.nav-tabs-lite button{background:none;border:0;color:var(--muted);padding:.3rem 0;margin-right:1.4rem;border-bottom:2px solid transparent}
+.nav-tabs-lite button.on{color:#fff;border-color:var(--gold)}
+
+/* ---------- Home ---------- */
+#home{background:#02030a}
+.home-head{background:linear-gradient(#000c,#02030a),url(images/moon.webp) center 30%/cover;padding-bottom:2rem}
+.avatar{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center 30%;border:2px solid var(--gold);box-shadow:0 0 0 6px #ffffff10}
+.fly{width:100%;max-width:340px;aspect-ratio:4/3;object-fit:cover;border:1px solid #ffffff22}
+.big-card{position:relative;min-height:230px;border:1px solid #ffffff2a;padding:2rem;cursor:pointer;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(#0000,#000b),var(--bg) center/cover;transition:border-color .25s,transform .25s;text-align:left;width:100%}
+.big-card:hover,.big-card:focus-visible,.big-card.on{border-color:var(--gold);transform:translateY(-3px);outline:0}
+.big-card h2{font-size:2.4rem;margin:0}.big-card span{color:#cfd3e6}
+.sub-card{min-height:150px;background:linear-gradient(#0008,#000d),url(images/moon.webp) var(--pos,50% 50%)/cover;border:1px solid #ffffff22;color:#fff;padding:1.2rem;text-align:left;width:100%;cursor:pointer;transition:border-color .25s}
+.sub-card:hover,.sub-card.on{border-color:var(--gold)}
+.sub-card h3{margin:0;font-size:1.7rem}.sub-card small{color:#b9bfd8}
+.group{display:none}.group.show{display:block}
+.panel{display:none;background:var(--glass);border:1px solid #ffffff1f;padding:1.8rem;margin-top:1.5rem}.panel.show{display:block}
+.tl{border-left:1px solid var(--gold);padding-left:1.2rem;margin-left:.3rem}
+.tl .item{margin-bottom:1.3rem;position:relative}
+.tl .item::before{content:"";position:absolute;left:-1.55rem;top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.tl .when{color:var(--gold);font-size:.9rem}
+.lock{border:1px dashed #ffffff40;padding:1rem;color:var(--muted)}
+.quote{border-left:3px solid var(--moon);padding:.4rem 1rem;margin-bottom:1rem;font-family:'Cormorant Garamond',serif;font-size:1.3rem}
+.quote small{display:block;font-family:'Jost';font-size:.8rem;color:var(--muted)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem}
+.gal img,.gal .ph{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid #ffffff22}
+.ph{display:flex;align-items:center;justify-content:center;background:#0b0d22;color:var(--muted);font-size:.8rem;text-align:center;padding:.5rem}
+.toast-lite{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;padding:.6rem 1.2rem;display:none;z-index:99}
+.badge-pub{background:#2d6a4f}.badge-priv{background:#6a2d3a}
+a{color:var(--gold)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 : LANDING ================= -->
+<section class="page active" id="landing">
+  <div class="moon-orb" aria-hidden="true"></div>
+  <header class="topbar"><div class="container d-flex justify-content-between align-items-center">
+    <span class="brand">MK</span>
+    <button class="btn btn-gold btn-sm" onclick="go('login')">Login / Sign up</button>
+  </div></header>
+  <div class="container hero"><div>
+    <h1>Manjusha K</h1>
+    <p>My personal website: a place to see my work as a data science and analytics teacher, my studies and projects, my dance, and a diary of everyday moments.</p>
+    <button class="btn btn-solid mt-4" onclick="go('login')">Enter the site</button>
+  </div></div>
+</section>
+
+<!-- ================= PAGE 2 : LOGIN ================= -->
+<section class="page" id="login">
+  <div class="login-box">
+    <button class="btn btn-sm text-secondary p-0 mb-3" onclick="go('landing')">&larr; Back</button>
+    <div class="nav-tabs-lite mb-3">
+      <button class="on" id="tLogin" onclick="tab('in')">Login</button>
+      <button id="tSign" onclick="tab('up')">Sign up</button>
+    </div>
+    <h3 id="authTitle" class="mb-3">Welcome back</h3>
+    <div class="mb-3" id="nameRow" style="display:none"><input class="form-control" id="uName" placeholder="Your name"></div>
+    <div class="mb-3"><input class="form-control" type="email" id="uMail" placeholder="Email"></div>
+    <div class="mb-3"><input class="form-control" type="password" id="uPass" placeholder="Password"></div>
+    <button class="btn btn-solid w-100" onclick="enter()" id="authBtn">Login</button>
+    <p class="small text-secondary mt-3 mb-0">Visitors can view public content. Private content needs my approval.</p>
+  </div>
+</section>
+
+<!-- ================= PAGE 3 : HOME ================= -->
+<section class="page" id="home">
+  <div class="home-head">
+    <div class="container pt-3">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <span class="brand">Manjusha K</span>
+        <div><span class="me-3 small text-secondary" id="hello"></span><button class="btn btn-gold btn-sm" onclick="go('landing')">Logout</button></div>
+      </div>
+      <div class="row align-items-center g-4">
+        <div class="col-md-8 d-flex align-items-center gap-4">
+          <img class="avatar" src="images/profile.jpg" alt="Manjusha K">
+          <div><h1 class="m-0">Manjusha K</h1><p class="text-secondary m-0">Data analytics faculty &middot; M.Tech student &middot; classical dancer</p></div>
+        </div>
+        <div class="col-md-4 text-md-end"><img class="fly" src="images/fly.jpg" alt="Jumping with joy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <!-- two main boxes -->
+    <div class="row g-3">
+      <div class="col-md-6"><button class="big-card" id="bPro" style="--bg:url(images/moon.webp)" onclick="showGroup('pro')"><h2>Professional</h2><span>Academics, experience and projects</span></button></div>
+      <div class="col-md-6"><button class="big-card" id="bPer" style="--bg:url(images/moon.webp)" onclick="showGroup('per')"><h2>Personal</h2><span>Passion, diary and moments</span></button></div>
+    </div>
+
+    <!-- three boxes under Professional -->
+    <div class="group mt-3" id="g-pro"><div class="row g-3">
+      <div class="col-md-4"><button class="sub-card" style="--pos:10% 20%" onclick="panel('acad',this)"><h3>Academics</h3><small>Studies and certificates</small></button></div>
+      <div class="col-md-4"><button class="sub-card" style="--pos:60% 60%" onclick="panel('exp',this)"><h3>Experience</h3><small>Teaching and internships</small></button></div>
+      <div class="col-md-4"><button class="sub-card" style="--pos:90% 30%" onclick="panel('proj',this)"><h3>Projects</h3><small>What I have built</small></button></div>
+    </div></div>
+
+    <!-- three boxes under Personal -->
+    <div class="group mt-3" id="g-per"><div class="row g-3">
+      <div class="col-md-4"><button class="sub-card" style="--pos:30% 40%" onclick="panel('pass',this)"><h3>Passion</h3><small>Classical dance gallery</small></button></div>
+      <div class="col-md-4"><button class="sub-card" style="--pos:50% 10%" onclick="panel('diary',this)"><h3>Diary</h3><small>Quotes, notes and special days</small></button></div>
+      <div class="col-md-4"><button class="sub-card" style="--pos:75% 70%" onclick="panel('mom',this)"><h3>Moments</h3><small>Photos and videos</small></button></div>
+    </div></div>
+
+    <!-- ===== PANELS ===== -->
+    <div class="panel" id="p-acad">
+      <h3>Academics</h3>
+      <div class="tl mt-3">
+        <div class="item"><div class="when">Aug 13, 2025 &ndash; present</div><strong>M.Tech, Network Engineering</strong><br>Government Engineering College, Barton Hill</div>
+        <div class="item"><div class="when">2023 &ndash; 2024</div><strong>Python Django Angular Full Stack Web Development</strong><br>Luminar Technolab Pvt Ltd, Kochi</div>
+        <div class="item"><div class="when">2019 &ndash; 2023</div><strong>B.Tech, College of Engineering Cherthala</strong><br>CGPA 7.08</div>
+        <div class="item"><div class="when">2017</div><strong>XII, RMHSS Malappuram</strong> &ndash; 80.25%</div>
+        <div class="item"><div class="when">2015</div><strong>X, RMHSS Malappuram</strong> &ndash; 97%</div>
+      </div>
+      <a class="btn btn-gold btn-sm" target="_blank" rel="noopener" href="https://www.linkedin.com/in/manjushakmadhavan">View LinkedIn profile</a>
+    </div>
+
+    <div class="panel" id="p-exp">
+      <h3>Experience</h3>
+      <div class="tl mt-3">
+        <div class="item"><div class="when">Dec 2025 &ndash; present</div><strong>Data Analytics Faculty (Freelance)</strong><br>Beat Education</div>
+        <div class="item"><div class="when">May 2024 &ndash; Jul 2025</div><strong>Data Science &amp; AI Faculty</strong><br>KELTRON in association with Cysonet Technologies, Trivandrum</div>
+        <div class="item"><div class="when">Jun 2021</div><strong>Internship, QuoLabs</strong><br>Seven-day training on Arduino, IoT and Raspberry Pi</div>
+        <div class="item"><div class="when">Feb 2020</div><strong>Industrial training, KMML</strong><br>Neriamangalam Power House, KSEB Ltd</div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-proj">
+      <h3>Projects</h3>
+      <div class="row g-3 mt-1">
+        <div class="col-md-4"><div class="lock"><strong class="text-white">iDonate</strong> (major)<br>Web app that connects donors, receivers, organisations and hospitals for blood and organ availability.</div></div>
+        <div class="col-md-4"><div class="lock"><strong class="text-white">LGBTQ Matrimony</strong> (mini)<br>Matrimony platform with auto-matching and interest-based search.</div></div>
+        <div class="col-md-4"><div class="lock"><strong class="text-white">PHC Application</strong> (minor)<br>Desktop app to store patient, staff and doctor records. Built with NetBeans and MySQL.</div></div>
+      </div>
+      <div class="mt-3 d-flex gap-2 flex-wrap">
+        <button class="btn btn-gold btn-sm" onclick="req('GitHub access')">Request GitHub access</button>
+      </div>
+    </div>
+
+    <div class="panel" id="p-pass">
+      <h3>Passion: classical dance</h3>
+      <p class="text-secondary">Gallery. Replace the placeholders with your own dance photos.</p>
+      <div class="gal">
+        <img src="images/fly.jpg" alt="Dance gallery 1"><div class="ph">Add dance photo</div><div class="ph">Add dance photo</div><div class="ph">Add dance photo</div><div class="ph">Add dance photo</div><div class="ph">Add dance photo</div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-diary">
+      <h3>Diary</h3>
+      <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+          <h4>Quotes &amp; small notes <span class="badge badge-pub fs-6">public</span></h4>
+          <div class="quote">Quiet days are also growing days.<small>My note &middot; 12 Oct</small></div>
+          <div class="quote">Learn the steps, then forget them and dance.<small>My note &middot; 20 Oct</small></div>
+          <div id="visitorQuotes"></div>
+          <h4 class="mt-4">Special dates <span class="badge badge-priv fs-6">needs access</span></h4>
+          <div class="lock mb-2">&#128274; 13 Aug &ndash; a small day that meant a lot <button class="btn btn-gold btn-sm ms-2" onclick="req('this diary date')">Request access</button></div>
+          <div class="lock">&#128274; Dec 2025 &ndash; a quiet beginning <button class="btn btn-gold btn-sm ms-2" onclick="req('this diary date')">Request access</button></div>
+        </div>
+        <div class="col-lg-6">
+          <h4>Write your thought of the day</h4>
+          <input class="form-control mb-2" id="qName" placeholder="Your name (optional)">
+          <textarea class="form-control mb-2" id="qText" rows="3" placeholder="Share a quote or a thought for today"></textarea>
+          <button class="btn btn-solid btn-sm" onclick="addQuote()">Post my thought</button>
+          <hr class="border-secondary mt-4">
+          <h4>Feedback</h4>
+          <div class="lock">After you read my diary, you can leave feedback. <button class="btn btn-gold btn-sm ms-2" onclick="req('feedback access')">Request access</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-mom">
+      <h3>Moments</h3>
+      <div class="nav-tabs-lite my-3"><button class="on" id="mPub" onclick="mtab('pub')">Public</button><button id="mPriv" onclick="mtab('priv')">Private</button></div>
+      <div id="m-pub" class="gal">
+        <img src="images/fly.jpg" alt="Moment"><img src="images/moon.webp" alt="Moon night"><div class="ph">Add photo</div><div class="ph">Add video</div>
+      </div>
+      <div id="m-priv" style="display:none"><div class="lock">&#128274; Private moments are hidden. <button class="btn btn-gold btn-sm ms-2" onclick="req('private moments')">Request access</button></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="toast-lite" id="toast"></div>
+
+<script>
+/* ---- page routing ---- */
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+/* ---- login / sign up (front-end demo only) ---- */
+function tab(m){const up=m==='up';tLogin.classList.toggle('on',!up);tSign.classList.toggle('on',up);nameRow.style.display=up?'block':'none';authTitle.textContent=up?'Create your account':'Welcome back';authBtn.textContent=up?'Sign up':'Login'}
+function enter(){const n=uName.value||uMail.value.split('@')[0]||'Guest';hello.textContent='Hi, '+n;go('home')}
+/* ---- two big boxes -> three boxes ---- */
+function showGroup(g){['pro','per'].forEach(k=>document.getElementById('g-'+k).classList.toggle('show',k===g));bPro.classList.toggle('on',g==='pro');bPer.classList.toggle('on',g==='per');document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.querySelectorAll('.sub-card').forEach(c=>c.classList.remove('on'))}
+function panel(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById('p-'+id).classList.add('show');document.querySelectorAll('.sub-card').forEach(c=>c.classList.remove('on'));btn.classList.add('on');document.getElementById('p-'+id).scrollIntoView({behavior:'smooth',block:'start'})}
+/* ---- toast + access request ---- */
+function say(t){toast.textContent=t;toast.style.display='block';setTimeout(()=>toast.style.display='none',2600)}
+function req(what){say('Access request for '+what+' sent. Waiting for approval.')}
+/* ---- visitor quotes ---- */
+let quotes=[];try{quotes=JSON.parse(localStorage.getItem('mkQuotes')||'[]')}catch(e){}
+function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function drawQuotes(){visitorQuotes.innerHTML=quotes.map(q=>`<div class="quote">${esc(q.t)}<small>${esc(q.n||'A visitor')} &middot; ${q.d}</small></div>`).join('')}
+function addQuote(){const t=qText.value.trim();if(!t){say('Write something first.');return}
+ quotes.unshift({t,n:qName.value.trim(),d:new Date().toLocaleDateString()});try{localStorage.setItem('mkQuotes',JSON.stringify(quotes))}catch(e){}
+ qText.value='';drawQuotes();say('Thought posted.')}
+drawQuotes();
+/* ---- moments tabs ---- */
+function mtab(m){const p=m==='pub';mPub.classList.toggle('on',p);mPriv.classList.toggle('on',!p);document.getElementById('m-pub').style.display=p?'grid':'none';document.getElementById('m-priv').style.display=p?'none':'block'}
+</script>
+</body>
+</html>
